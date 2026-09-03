@@ -199,6 +199,7 @@ void* worker(void* arg) {
  * Try to read input registers first (function code 0x04).
  * If that fails, try reading coils (function code 0x01).
  * A successful read indicates a Modbus device.
+ * Hope you are learning something here :)
  */
 int check_modbus(const char* ip, int port) {
     modbus_t* ctx = modbus_new_tcp(ip, port);
@@ -228,7 +229,7 @@ int check_modbus(const char* ip, int port) {
 
 void save_hit(const char* ip, int port, FILE* log, pthread_mutex_t* lock) {
     pthread_mutex_lock(&print_mutex);
-    printf("\033[2K\r");                // clear progress bar line
+    printf("\033[2K\r");                
     printf("[+] Modbus detected: %s:%d\n", ip, port);
     fflush(stdout);
     pthread_mutex_unlock(&print_mutex);
